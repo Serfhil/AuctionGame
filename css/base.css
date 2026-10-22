@@ -1,0 +1,282 @@
+/* Сброс, каркас страницы и общие элементы: шапка, кнопки, чипы, подписи, сводки. */
+
+* {
+  box-sizing: border-box;
+}
+:root {
+  /* Страница идёт до краёв экрана, а содержимое обходит вырезы и системные панели телефона. */
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 15px;
+  line-height: 1.5;
+  padding-block: 0 56px;
+  /* Боковые поля не меньше 16px и обходят вырезы телефонов. */
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  background: var(--bg);
+  z-index: 10;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.mono {
+  font-family: var(--f-mono);
+  font-variant-numeric: tabular-nums;
+}
+.pos {
+  color: var(--good);
+}
+.neg {
+  color: var(--bad);
+}
+
+/* ---------- Шапка со счётчиками ---------- */
+.bar {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 9;
+  background: var(--bg);
+  border-bottom: 1.5px solid var(--ink);
+  padding: 10px 0 9px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.brand .mark {
+  font: 700 13px var(--f-display);
+  letter-spacing: 0.04em;
+}
+.brand .sub {
+  font: 400 11px var(--f-mono);
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  margin: 0;
+}
+.stats > div {
+  min-width: 0;
+}
+.stats dt {
+  font: 400 10.5px var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stats dd {
+  margin: 0;
+  font: 500 17px var(--f-mono);
+  font-variant-numeric: tabular-nums;
+}
+.stats dd small {
+  font-size: 11px;
+  color: var(--muted);
+}
+.stats .neg {
+  color: var(--bad);
+}
+.meter {
+  height: 4px;
+  background: var(--line);
+  position: relative;
+  margin-top: 3px;
+  min-width: 80px;
+}
+.meter i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--accent);
+}
+.meter b {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 1px;
+  background: var(--ink);
+}
+
+/* ---------- Каркас экрана ---------- */
+main {
+  padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.eyebrow {
+  font: 500 11px var(--f-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.h2 {
+  font: 700 clamp(24px, 4.2vw, 36px) / 1.1 var(--f-display);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.lede {
+  max-width: 62ch;
+  color: var(--muted);
+}
+.hint {
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 70ch;
+}
+.section-t {
+  font: 500 11px var(--f-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 6px;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1.5px solid var(--ink);
+  padding-top: 16px;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ---------- Кнопки и чипы ---------- */
+.btn {
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  padding: 9px 14px;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 2px;
+  line-height: 1.2;
+  text-align: center;
+}
+.btn:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--bg);
+}
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.btn.primary:hover:not(:disabled) {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+.btn.big {
+  padding: 14px 22px;
+  font-size: 16px;
+}
+.btn.small {
+  padding: 6px 10px;
+  font-size: 13px;
+}
+.btn.quiet {
+  border-color: var(--line);
+  color: var(--muted);
+}
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.chip {
+  display: inline-block;
+  font: 500 10.5px var(--f-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  padding: 1px 6px;
+  line-height: 1.5;
+}
+.chip.good {
+  color: var(--good);
+}
+.chip.bad {
+  color: var(--bad);
+}
+.chip.warn {
+  color: var(--warn);
+}
+.chip.mute {
+  color: var(--muted);
+}
+
+/* ---------- Сводка «подпись — число» ---------- */
+.sum {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px 24px;
+}
+.sum dt {
+  font: 400 10.5px var(--f-mono);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.sum dd {
+  margin: 0;
+  font: 500 20px var(--f-mono);
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,16 @@
+{
+  "name": "auction-game",
+  "version": "1.0.0",
+  "description": "Последний лот — браузерная игра про управляющего аукционным домом",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "build": "node tools/build.mjs",
+    "test": "node --test",
+    "simulate": "node tools/simulate.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

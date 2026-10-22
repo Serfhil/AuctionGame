@@ -1,0 +1,228 @@
+/* Экраны вне торгов: заставка, подготовка, итоги недели, события, финал. */
+
+/* ---------- Заставка ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+  padding-top: 12px;
+}
+.hero h1 {
+  font: 700 clamp(40px, 10vw, 96px) / 0.92 var(--f-display);
+  letter-spacing: -0.03em;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.paddle-art {
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: rotate(7deg);
+  max-width: 100%;
+}
+.paddle-art .face {
+  width: min(220px, 50vw);
+  aspect-ratio: 1;
+  background: #fff;
+  color: #10151b;
+  border: 2px solid #10151b;
+  display: grid;
+  place-items: center;
+  font: 700 clamp(64px, 14vw, 112px) var(--f-display);
+  letter-spacing: -0.04em;
+  box-shadow: 6px 6px 0 var(--accent);
+}
+.paddle-art .stick {
+  width: 22px;
+  height: 78px;
+  background: #10151b;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1.5px solid var(--ink);
+}
+.steps li {
+  padding: 14px 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.steps .n {
+  font: 500 12px var(--f-mono);
+  color: var(--accent);
+}
+.steps b {
+  font-weight: 600;
+}
+.steps span {
+  color: var(--muted);
+  font-size: 14px;
+}
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  font: 400 13px var(--f-mono);
+  color: var(--muted);
+}
+.facts b {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* ---------- Подготовка торгов ---------- */
+.mkts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.mkt {
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-radius: 2px;
+}
+.mkt.on {
+  border: 2px solid var(--accent);
+  padding: 13px;
+}
+.mkt:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.mkt b {
+  font-weight: 600;
+}
+.mkt .cost {
+  font: 500 16px var(--f-mono);
+}
+.mkt span {
+  font-size: 13px;
+  color: var(--muted);
+}
+.list {
+  border-top: 1px solid var(--line);
+}
+.list > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+.list .mono {
+  white-space: nowrap;
+}
+
+/* ---------- Итоги недели ---------- */
+.table {
+  border-top: 1.5px solid var(--ink);
+}
+.tr {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr) minmax(0, 0.9fr);
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.tr .nm {
+  font-weight: 500;
+}
+.tr .st {
+  font-size: 13px;
+  color: var(--muted);
+}
+.tr .st.bad {
+  color: var(--bad);
+}
+.tr .st.good {
+  color: var(--good);
+}
+.tr .amt {
+  text-align: right;
+  font-family: var(--f-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- События ---------- */
+.event {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.opts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.opt {
+  text-align: left;
+  background: var(--surface);
+  border: 1.5px solid var(--ink);
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-radius: 2px;
+}
+.opt:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--bg);
+}
+.opt:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.opt b {
+  font-weight: 600;
+}
+.opt span {
+  font: 400 13px var(--f-mono);
+  opacity: 0.8;
+}
+
+/* ---------- Финал ---------- */
+.endbig {
+  font: 700 clamp(30px, 7vw, 64px) / 1 var(--f-display);
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+@media (max-width: 820px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .paddle-art {
+    display: none;
+  }
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  .steps li {
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .tr {
+    grid-template-columns: 1fr auto;
+  }
+  .tr .st {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+}

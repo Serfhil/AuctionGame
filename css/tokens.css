@@ -1,0 +1,55 @@
+/*
+ * Дизайн-токены: цвета светлой и тёмной темы, шрифты.
+ * Концепция: печатный каталог торгов. Крупные номера лотов, квадратные «пэддлы» участников,
+ * тонкие линейки, острые углы. Акцентный цвет один, остальное нейтральное.
+ *
+ * Тема выбирается так: явный data-theme="light|dark" на <html> сильнее системной настройки.
+ */
+:root {
+  --bg: #e6e9ec;
+  --surface: #f6f7f9;
+  --ink: #10151b;
+  --muted: #58626d;
+  --line: #c2c8cf;
+  --accent: #2140dc;
+  --accent-ink: #ffffff;
+  --good: #17794a;
+  --bad: #c4302b;
+  --warn: #94590a;
+  color-scheme: light;
+
+  --f-display: 'Unbounded', 'Arial Black', system-ui, sans-serif;
+  --f-body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+  --f-cat: 'Spectral', Georgia, 'Times New Roman', serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0e1116;
+    --surface: #171b22;
+    --ink: #e8eaee;
+    --muted: #8d96a2;
+    --line: #2b313b;
+    --accent: #8197ff;
+    --accent-ink: #0e1116;
+    --good: #4cc38a;
+    --bad: #ff7070;
+    --warn: #e0a44a;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #0e1116;
+  --surface: #171b22;
+  --ink: #e8eaee;
+  --muted: #8d96a2;
+  --line: #2b313b;
+  --accent: #8197ff;
+  --accent-ink: #0e1116;
+  --good: #4cc38a;
+  --bad: #ff7070;
+  --warn: #e0a44a;
+  color-scheme: dark;
+}
